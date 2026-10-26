@@ -1,0 +1,36 @@
+option "title" "Фінансовий трекер Олі"
+option "operating_currency" "PLN"
+
+2026-07-31 open Assets:Банк PLN
+2026-07-31 open Assets:Готівка PLN
+2026-07-31 open Equity:Початковий-Залишок PLN
+2026-07-31 open Income:Зарплата PLN
+2026-07-31 open Income:Інше PLN
+2026-07-31 open Expenses:Житло PLN
+2026-07-31 open Expenses:Продукти PLN
+2026-07-31 open Expenses:Кафе-І-Доставка PLN
+2026-07-31 open Expenses:Транспорт PLN
+2026-07-31 open Expenses:Підписки PLN
+2026-07-31 open Expenses:Без-Категорії PLN
+2026-07-31 open Expenses:Косметика-І-Побутова-Хімія PLN
+2026-07-31 open Expenses:Мобільний-Звязок PLN
+2026-07-31 open Expenses:Спорт PLN
+2026-07-31 open Expenses:Інтернет PLN
+2026-07-31 open Expenses:Комунальні PLN
+2026-07-31 open Expenses:Розваги PLN
+
+2026-07-31 * "Початковий залишок"
+  Assets:Банк  4500.00 PLN
+  Equity:Початковий-Залишок  -4500.00 PLN
+
+include "transactions.beancount"
+include "ola-manual.beancount"
+
+; Усі суми в PLN. Відсоток за нульового доходу не визначений (порожнє поле).
+2026-08-01 query "Витрати за категоріями" "SELECT yearmonth(date) AS month, account AS category, sum(number) AS expenses WHERE account ~ '^Expenses:' GROUP BY 1, 2 ORDER BY 1, 2"
+
+2026-08-01 query "Норма заощаджень" "SELECT yearmonth(date) AS month, -sum(number * int(account ~ '^Income:')) AS income, sum(number * int(account ~ '^Expenses:')) AS expenses, -sum(number) AS saved, round(100 * sum(number) / sum(number * int(account ~ '^Income:')), 2) AS savings_percent, max(date) AS last_operation WHERE account ~ '^(Income|Expenses):' GROUP BY 1 ORDER BY 1"
+
+2026-08-01 query "Фіксовані і змінні" "SELECT yearmonth(date) AS month, sum(number * int('fixed' IN tags)) AS fixed, sum(number * int(NOT 'fixed' IN tags)) AS variable WHERE account ~ '^Expenses:' GROUP BY 1 ORDER BY 1"
+
+2026-08-01 query "Без категорії" "SELECT yearmonth(date) AS month, date, narration AS description, sum(number) AS expenses WHERE account = 'Expenses:Без-Категорії' GROUP BY 1, 2, 3 ORDER BY 1, 2, 3"

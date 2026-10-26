@@ -1,0 +1,69 @@
+{
+  "source": "База з наданих CSV, не контрольні значення умови ДЗ",
+  "owners": {
+    "ola": {
+      "2026-08": {
+        "income": "9800.00",
+        "expenses": "5703.70",
+        "saved": "4096.30",
+        "savings_percent": "41.80",
+        "fixed": "3508.49",
+        "variable": "2195.21",
+        "closing": "8596.30",
+        "count": 57
+      },
+      "2026-09": {
+        "income": "9800.00",
+        "expenses": "6090.91",
+        "saved": "3709.09",
+        "savings_percent": "37.85",
+        "fixed": "3508.49",
+        "variable": "2582.42",
+        "closing": "12305.39",
+        "count": 53
+      },
+      "2026-10": {
+        "income": "9800.00",
+        "expenses": "4978.05",
+        "saved": "4821.95",
+        "savings_percent": "49.20",
+        "fixed": "3463.49",
+        "variable": "1514.56",
+        "closing": "17127.34",
+        "count": 32
+      }
+    },
+    "marko": {
+      "2026-08": {
+        "income": "7600.00",
+        "expenses": "2316.86",
+        "saved": "5283.14",
+        "savings_percent": "69.52",
+        "closing": "8143.54",
+        "count": 39,
+        "fixed": "461.29",
+        "variable": "1855.57"
+      },
+      "2026-09": {
+        "income": "7600.00",
+        "expenses": "2890.72",
+        "saved": "4709.28",
+        "savings_percent": "61.96",
+        "closing": "12852.82",
+        "count": 42,
+        "fixed": "457.89",
+        "variable": "2432.83"
+      },
+      "2026-10": {
+        "income": "0.00",
+        "expenses": "1640.35",
+        "saved": "-1640.35",
+        "savings_percent": null,
+        "closing": "11212.47",
+        "count": 28,
+        "fixed": "318.99",
+        "variable": "1321.36"
+      }
+    }
+  }
+}
